@@ -2,7 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const app = express();
 const mongoose = require('mongoose');
-const Models = require('.models/models.js');
+const Models = require('./models.js');
 const Recipes = Models.Recipe;
 const Users = Models.User;
 
@@ -36,7 +36,7 @@ const { check, validationResult } = require('express-validator');
 // mongoose.connect('mongodb://localhost:27017/recipeDB', { useNewUrlParser: true, useUnifiedTopology: true });
 
 // Connects  the mongo atlas db
-mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect( process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 // enables morgan logger
 app.use(morgan('common'));

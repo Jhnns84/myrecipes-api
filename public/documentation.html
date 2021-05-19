@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation</title>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+        
+        table {
+          width:100%;
+        }
+        table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+        }
+        th, td {
+          padding: 15px;
+          text-align: left;
+        }
+        #t01 tr:nth-child(even) {
+          background-color: #eee;
+        }
+        #t01 tr:nth-child(odd) {
+         background-color: #fff;
+        }
+        #t01 th {
+          background-color: black;
+          color: white;
+        }
+        </style>
+</head>
+<body>
+<h2>Recipe API Documentation</h2>
+
+<p>An API that provides access to information about different recipes, cuisines and meal types.</p>
+
+<table id="t01">
+  <tr>
+    <th>Description</th>
+    <th>Endpoint URL</th> 
+    <th>HTTP Method</th>
+    <th>Query Parameters</th>
+    <th>Request body format</th>
+    <th>Response body format</th>
+  </tr>
+  <tr>
+    <td>Return a list of all recipes</td>
+    <td>/recipes</td>
+    <td>GET</td>
+    <td>None</td>
+    <td>None</td>
+    <td>A JSON object holding a list of all recipes in the database.</td>
+  </tr>
+  <tr>
+    <td>Get data about a single recipe by title</td>
+    <td>/recipes</td>
+    <td>GET</td>
+    <td>:name</td>
+    <td>None</td>
+    <td>A JSON object holding data about a single recipe, containing a name, description, cuisine, meal type, difficulty, time, key ingredients, image URL, whether it's featured or not. Example: <br><br>
+      {
+        "_id": "60797a201dd006d9e5543e62",
+        "Name": "Pasta Carbonara",
+        "Description": "An Italian pasta dish from Rome made with egg, hard cheese, cured pork, and black pepper.",
+        "ImagePath": "carbonara.png",
+        "Featured": true,
+        "Cuisine": {
+            "Name": "Italian",
+            "Description": "Italian cuisine is known for its regional diversity, especially between..."
+        },
+        "MealType": {
+            "Name": "Pasta dish",
+            "Description": "A main course is the featured or primary dish in a meal consisting of several..."
+        "Difficulty": "Easy",
+        "Time": "30 Minutes",
+        "Key Ingredients": [
+            "Guanciale",
+            ...
+        ]
+    }
+    </td>
+  </tr>
+  <tr>
+    <td>Get information about a cuisine by name</td>
+    <td>/recipes/cuisine</td>
+    <td>GET</td>
+    <td>:name</td>
+    <td>None</td>
+    <td>A JSON object holding data about a single cuisine, containing a description. Example: <br><br>
+        "Cuisine": {
+            "Name": "Italian",
+            "Description": "Italian cuisine is known for its regional diversity, especially between..."
+    }
+    </td>
+  </tr>
+  <tr>
+    <td>Get information about a meal type by name</td>
+    <td>/recipes/mealtype</td>
+    <td>GET</td>
+    <td>:name</td>
+    <td>None</td>
+    <td>A JSON object holding data about a single meal type, containing a description. Example: <br><br>
+        "MealType": {
+            "Name": "Main Course",
+            "Description": "A main course is the featured or primary dish in a meal consisting of several..."
+    }
+    </td>
+  </tr>
+  <tr>
+    <td>Register a new user</td>
+    <td>/users</td>
+    <td>POST</td>
+    <td>None</td>
+    <td>A JSON object holding data about the user to add, structured like: <br><br>
+      {
+        "Username" : "testuser54321",
+        "Password" : "testpassword54321",
+        "Email": "test54321@testemail.com"
+        "Birthday": "1981-10-04T00:00:00.000Z"
+      } </td>
+    <td>A JSON object holding data about the user that was added. Example: <br><br>
+      {
+        "FavoriteRecipes": [],
+        "_id": "607d94bf86e59c02093dd11b",
+        "Username": "testuser54321",
+        "Password": "testpassword54321",
+        "Email": "test54321@testemail.com",
+        "__v": 0
+    } </td>
+  </tr>
+  <tr>
+    <td>Update a users info (username)</td>
+    <td>/users</td>
+    <td>PUT</td>
+    <td>:Username</td>
+    <td>A JSON object holding data about the username to change, structured like: <br><br>
+      {
+        "Username": "AugustinaXY_UPDATED",
+        "Password": "654pwd123",
+        "Email": "a.boadicea@gmail.com",
+        "Birthday": "1987-04-27T00:00:00.000Z"
+    }
+    </td>
+    <td>A JSON object holding data about the user that was updated. Example: <br><br>{
+      "_id": "607989c91dd006d9e5543e65",
+      "Username": "AugustinaXY_UPDATED",
+      "Password": "654pwd123",
+      "Email": "a.boadicea@gmail.com",
+      "Birthday": "1987-04-27T00:00:00.000Z",
+      "FavoriteRecipes": [
+          "60797a101dd006d9e5543e61",
+          "607979f11dd006d9e5543e5e",
+          "607979841dd006d9e5543e59",
+          "607979841dd006d9e5543e59",
+          "607979841dd006d9e5543e59"
+      ]
+  }</td>
+  </tr>
+  <tr>
+    <td>Add a recipe to a users favorites</td>
+    <td>/users</td>
+    <td>POST</td>
+    <td>:Username/Recipes/:RecipeID</td>
+    <td>None</td>
+    <td>A JSON object holding data about the user the favorite was added to. Example: <br><br>{
+      "_id": "607989e11dd006d9e5543e67",
+      "Username": "Frank09",
+      "Password": "654pwd123",
+      "Email": "f.delangle@gmail.com",
+      "Birthday": "1972-11-14T00:00:00.000Z",
+      "FavoriteRecipes": [
+          "607979be1dd006d9e5543e5d",
+          "607979f11dd006d9e5543e5e",
+          "607979841dd006d9e5543e59"
+      ]
+  }</td>
+  </tr>
+  <tr>
+    <td>Remove a recipe from a users favorites</td>
+    <td>/removefavorites/users/</td>
+    <td>POST</td>
+    <td>:Username/Recipes/:RecipeID</td>
+    <td>None</td>
+    <td>A JSON object holding data about the user the favorite was removed from. Example: <br><br>{
+      "FavoriteRecipes": [
+          "607979be1dd006d9e5543e5d",
+          "607979f11dd006d9e5543e5e"
+      ],
+      "_id": "607989e11dd006d9e5543e67",
+      "Username": "Frank09",
+      "Password": "654pwd123",
+      "Email": "f.delangle@gmail.com",
+      "Birthday": "1972-11-14T00:00:00.000Z"
+  }</td>
+  </tr>
+  <tr>
+    <td>Delete a user</td>
+    <td>/users</td>
+    <td>DELETE</td>
+    <td>:Username</td>
+    <td>None</td>
+    <td>A text message indicating that the user was deleted</td>
+  </tr>
+</table>
+
+</body>
+</html>

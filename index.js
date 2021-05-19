@@ -33,7 +33,10 @@ app.use(cors({
 const { check, validationResult } = require('express-validator');
 
 // Connects local database
-mongoose.connect('mongodb://localhost:27017/recipeDB', { useNewUrlParser: true, useUnifiedTopology: true });
+// mongoose.connect('mongodb://localhost:27017/recipeDB', { useNewUrlParser: true, useUnifiedTopology: true });
+
+// Connects  the mongo atlas db
+mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 // enables morgan logger
 app.use(morgan('common'));

@@ -17,7 +17,7 @@ require('./passport');
 
 // imports CORS module and defines allowed domains
 const cors = require('cors');
-let allowedOrigins = ['http://localhost:8080', 'https://myrecipes-api.herokuapp.com/'];
+let allowedOrigins = ['http://localhost:8080', 'https://jm-myrecipes-api.herokuapp.com/'];
 app.use(cors({
   origin: (origin, callback) => {
     if(!origin) return callback(null, true);
@@ -40,7 +40,7 @@ app.use(morgan('common'));
 
 // Generic welcome message
 app.get('/', (req, res) => {
-  res.send('Welcome to the recipe API. Please refer to the documentation for instructions: https://myrecipes-api.herokuapp.com/documentation.html');
+  res.send('Welcome to the recipe API. Please refer to the documentation for instructions: https://jm-myrecipes-api.herokuapp.com/documentation.html');
 });
 
 // Gets the list of data about all recipes

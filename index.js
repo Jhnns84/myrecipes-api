@@ -47,16 +47,28 @@ app.get('/', (req, res) => {
 });
 
 // Gets the list of data about all recipes
-app.get('/recipes', passport.authenticate('jwt', { session: false}), (req, res) => {
-Recipes.find()
-  .then((recipes) => {
-    res.status(200).json(recipes);
-  }) 
-  .catch((err) => {
-    console.error(err);
-    res.status(500).send('Error: ' +  err);
+
+// app.get('/recipes', passport.authenticate('jwt', { session: false}), (req, res) => {
+// Recipes.find()
+//   .then((recipes) => {
+//     res.status(200).json(recipes);
+//   }) 
+//   .catch((err) => {
+//     console.error(err);
+//     res.status(500).send('Error: ' +  err);
+//   });
+// });
+
+app.get('/recipes', function (req, res) {
+  Recipes.find()
+    .then(function (recipes) {
+      res.status(200).json(recipes);
+    }) 
+    .catch(function (error) {
+      console.error(error);
+      res.status(500).send('Error: ' +  error);
+    });
   });
-});
 
 // Gets the data about a single recipe, by name 
 app.get('/recipes/:Name', passport.authenticate('jwt', { session: false}), (req, res) => {

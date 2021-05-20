@@ -133,6 +133,27 @@
     } </td>
   </tr>
   <tr>
+    <td>Log into the application</td>
+    <td>/login</td>
+    <td>POST</td>
+    <td>Username and password. Example: <br><br>
+      http://api-address.com/login/?Username=John123&Password=password123</td>
+    <td>None</td>
+    <td>A JSON object holding data about the user that was added including a JWT-token. Example: <br><br>
+      {
+        "user": {
+            "FavoriteRecipes": [],
+            "_id": "626828bd520131083e385085",
+            "Username": "John123",
+            "Password": "$10$XWJ2b$LrdG/xoiBhO1VgcCi73FPG.aI6Faas4rqBoJtQ2O34opZQaMZ6",
+            "Email": "john123@gmail.com",
+            "Birthday": "1972-04-21T00:00:00.000Z",
+            "__v": 0
+        },
+        "token": "eyJhbGciAwWiIsIl9..."
+    } </td>
+  </tr>
+  <tr>
     <td>Update a users info (username)</td>
     <td>/users</td>
     <td>PUT</td>

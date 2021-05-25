@@ -8,13 +8,6 @@ const Users = Models.User;
 
 app.use(express.json());
 
-// imports auth-file
-require('./auth')(app);
-
-// imports passport-file
-const passport = require('passport');
-require('./passport');
-
 // imports CORS module and defines allowed domains
 const cors = require('cors');
 let allowedOrigins = ['http://localhost:8080', 'http://localhost:1234', 'https://jhnns84.github.io/myrecipes-app/', 'https://jm-myrecipes-api.herokuapp.com/'];
@@ -28,6 +21,15 @@ app.use(cors({
     return callback(null, true);
   }
 }));
+
+// imports auth-file
+require('./auth')(app);
+
+// imports passport-file
+const passport = require('passport');
+require('./passport');
+
+
 
 // imports validator
 const { check, validationResult } = require('express-validator');

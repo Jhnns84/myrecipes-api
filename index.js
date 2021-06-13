@@ -201,7 +201,7 @@ app.put('/users/:Username', passport.authenticate('jwt', { session: false}), (re
 });
 
 // Add a recipe to a users favorites
-app.post('/users/:Username/recipes/:RecipeID', passport.authenticate('jwt', { session: false}), (req, res) => {
+app.put('/users/:Username/recipes/:RecipeID', passport.authenticate('jwt', { session: false}), (req, res) => {
 Users.findOneAndUpdate({ Username: req.params.Username }, {
   $push: { FavoriteRecipes: req.params.RecipeID }
 },
@@ -217,7 +217,7 @@ Users.findOneAndUpdate({ Username: req.params.Username }, {
 });
 
 // Remove a movie from a users favorites
-app.post('/removefavorites/users/:Username/recipes/:RecipeID', passport.authenticate('jwt', { session: false}), (req, res) => {
+app.put('/removefavorites/users/:Username/recipes/:RecipeID', passport.authenticate('jwt', { session: false}), (req, res) => {
 Users.findOneAndUpdate({ Username: req.params.Username }, {
   $pull: { FavoriteRecipes: req.params.RecipeID }
 },

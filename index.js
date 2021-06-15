@@ -10,7 +10,7 @@ app.use(express.json());
 
 // imports CORS module and defines allowed domains
 const cors = require('cors');
-let allowedOrigins = ['http://localhost:8080', 'http://localhost:1234', 'https://jhnns84.github.io/myrecipes-app/', 'https://myrecipes-app-jhnns84.netlify.app/', 'https://jm-myrecipes-api.herokuapp.com/'];
+let allowedOrigins = ['http://localhost:8080', 'http://localhost:1234', 'https://myrecipes-app-jhnns84.netlify.app/'];
 app.use(cors({
   origin: (origin, callback) => {
     if(!origin) return callback(null, true);

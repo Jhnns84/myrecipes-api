@@ -2,7 +2,7 @@
 An API that provides access to information about different recipes, cuisines and meal types.
 
 # How to use it
-Recipes, cuisines, meal types and user data can be queried according to the instructions in the documentation file found under https://jm-myrecipes-api.herokuapp.com/documentation
+Recipes, cuisines, meal types and user data can be queried according to the instructions in the documentation file found under https://jm-myrecipes-api.herokuapp.com/documentation.html
 
 # Tech
 The application uses
